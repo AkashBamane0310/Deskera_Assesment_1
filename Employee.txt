@@ -1,0 +1,97 @@
+package com.app;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
+
+public class Employee  {
+	 
+	  private int ageInYears;
+	  private int ageInMonths;
+	  private int birthDate;
+	  private String firstName;
+	  private String lastName;
+	  
+	  private String employeeId;
+	
+	public Employee() {
+		super();
+	}
+	
+	public Employee(String firstName, String lastName, int birthDate) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDate = birthDate;
+
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public int getbirthDate() {
+		return birthDate;
+	}
+
+	public int getageInMonths() {
+		return ((2021-birthDate)*12);
+	}
+
+	public int getageInYears() {
+		return (2021-birthDate);
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [firstName=" + firstName + ", lastName=" + lastName + ", Birth Date=" + birthDate
+				 + ", Age In Years=" + ageInYears + ", Age In Month=" + ageInMonths+"]";
+	}
+	
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Please enter number of employees: ");
+		int empCount = sc.nextInt();
+		sc.nextLine();
+		
+		List<Employee> empList = new ArrayList<>();
+		
+		for (int i = 0; i < empCount; i++) {
+			System.out.println("Enter details for employee#" + (i + 1));
+			System.out.print("First name: ");
+			String firstName = sc.nextLine();
+			System.out.print("Last name: ");
+			String lastName = sc.nextLine();
+			System.out.print("Birth Date: ");
+			int birthDate = sc.nextInt();
+			sc.nextLine();
+			
+			
+			empList.add(new Employee(firstName, lastName, birthDate));
+		}
+
+		System.out.format("%-15s %-15s %-15s %-30s %-15s\n", "Firstname", "Lastname", "BirthDate", "Age In Years", "Age In Months");
+		for (int i = 0; i < 90; i++) System.out.print("-");
+		System.out.println();
+		
+		Iterator<Employee> it = empList.iterator();
+		while (it.hasNext()) {
+			Employee emp = it.next();
+			System.out.format("%-15s %-15s %-15s %-30s %-15s\n", 
+					emp.getFirstName(), emp.getLastName(), emp.getbirthDate(), 
+					emp.getageInYears(), emp.getageInMonths());
+		}
+		for (int i = 0; i < 90; i++) System.out.print("-");
+		
+		sc.close();
+	}
+
+
+}
